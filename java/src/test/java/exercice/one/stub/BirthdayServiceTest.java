@@ -1,4 +1,4 @@
-package kata;
+package exercice.one.stub;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
