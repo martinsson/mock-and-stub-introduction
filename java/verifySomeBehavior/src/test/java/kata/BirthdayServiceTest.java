@@ -12,14 +12,28 @@ import static org.mockito.Mockito.mock;
 
 public class BirthdayServiceTest {
 
+    ClientRepository repository = mock(ClientRepository.class);
+    Mailer mailer = mock(Mailer.class);
+    BirthdayService birthdayService = new BirthdayService(repository, mailer);
 
     @Test
-    public void name() {
+    public void classicVersion() {
 
         // Given
-        ClientRepository repository = mock(ClientRepository.class);
-        Mailer mailer = mock(Mailer.class);
-        BirthdayService birthdayService = new BirthdayService(repository, mailer);
+        Mockito.when(repository.birthdayIsTodayFor("bob")).thenReturn(true);
+        ArgumentCaptor<String> greeting = ArgumentCaptor.forClass(String.class);
+
+        // When
+        birthdayService.greeting("bob");
+
+        // Then
+        Mockito.verify(mailer).send("Happy birthday bob!");
+    }
+
+    @Test
+    public void argumentCaptors() {
+
+        // Given
         Mockito.when(repository.birthdayIsTodayFor("bob")).thenReturn(true);
         ArgumentCaptor<String> greeting = ArgumentCaptor.forClass(String.class);
 
@@ -35,17 +49,12 @@ public class BirthdayServiceTest {
     public void matchers() {
 
         // Given
-        ClientRepository repository = mock(ClientRepository.class);
-        Mailer mailer = mock(Mailer.class);
-        BirthdayService birthdayService = new BirthdayService(repository, mailer);
         Mockito.when(repository.birthdayIsTodayFor("bob")).thenReturn(true);
 
         // When
         birthdayService.greeting("bob");
 
         // Then
-        assertThat(Matchers.contains("Happy birthday")).isEqualTo("Happy birthday");
-
         Mockito.verify(mailer).send(Matchers.contains("Happy birthday"));
     }
 }
