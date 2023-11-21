@@ -3,8 +3,7 @@ package clients;
 public class ClientRepository {
 
   public boolean birthdayIsTodayFor(String name) {
-    // TODO Auto-generated method stub
-    return false;
+    throw new RuntimeException("Database not accessible.");
   }
 
 }
