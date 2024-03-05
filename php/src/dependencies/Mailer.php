@@ -1,6 +1,6 @@
 <?php
 
-namespace verifySomeBehavior;
+namespace mock_and_stub_introduction\dependencies;
 
 class Mailer
 {

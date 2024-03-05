@@ -1,6 +1,7 @@
 <?php
 
-namespace verifySomeBehavior;
+
+namespace mock_and_stub_introduction\spy;
 
 class BirthdayService {
     

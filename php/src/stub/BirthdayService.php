@@ -1,6 +1,6 @@
 <?php
 
-namespace stubSomeValues;
+namespace mock_and_stub_introduction\stub;
 
 class BirthdayService {
     
